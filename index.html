@@ -29,7 +29,7 @@
   .btn-secondary:hover{color:#fff}
   .hero-note{color:#64748B;font-size:13px;margin-top:20px}
  
-  /* SCORE METER — signature element */
+  /* SCORE METER */
   .meter-wrap{margin:56px auto 0;max-width:480px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:32px 36px}
   .meter-label{font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#64748B;margin-bottom:10px}
   .meter-score{font-size:58px;font-weight:800;letter-spacing:-.04em;line-height:1}
@@ -85,15 +85,6 @@
   .cta-price small{font-size:20px;color:#94A3B8;font-weight:400;vertical-align:middle}
   .cta-once{font-size:13px;color:#64748B;margin-bottom:32px}
  
-  /* FAQ */
-  .faq{margin-top:40px;display:flex;flex-direction:column;gap:8px}
-  details{background:#fff;border:1px solid #E5E7EB;border-radius:8px;overflow:hidden}
-  summary{padding:16px 18px;font-weight:600;font-size:14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;list-style:none;color:#111827}
-  summary::-webkit-details-marker{display:none}
-  summary::after{content:'+';font-size:20px;font-weight:300;color:#3B82F6;transition:transform .2s;line-height:1}
-  details[open] summary::after{transform:rotate(45deg)}
-  .faq-body{padding:0 18px 16px;font-size:14px;color:#6B7280;line-height:1.7}
- 
   /* FOOTER */
   footer{background:#0B1120;color:#64748B;text-align:center;padding:28px 24px;font-size:13px}
  
@@ -114,7 +105,7 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">AI<span>Readiness</span> Scorecard</div>
-  <a href="https://gumroad.com" class="gumroad-button nav-cta">Download Now →</a>
+  <a href="https://gumroad.com" data-gumroad-product-id="ai-modernization-scorecard-enterprise" class="gumroad-button nav-cta">Download Now →</a>
 </nav>
  
 <!-- HERO -->
@@ -123,11 +114,11 @@
   <h1>Know Exactly How Ready Your Enterprise Is for <em>AI Modernization</em></h1>
   <p class="hero-sub">A structured, 8-dimension scorecard that gives C-suite leaders and transformation teams a clear, defensible picture of AI readiness — before committing budget.</p>
   <div class="hero-actions">
-    <a href="https://gumroad.com" class="gumroad-button btn-primary">Download Scorecard Now</a>
+    <a href="https://gumroad.com" data-gumroad-product-id="ai-modernization-scorecard-enterprise" class="gumroad-button btn-primary">Download Scorecard Now</a>
     <a href="#details" class="btn-secondary">Learn more ↓</a>
   </div>
   
-  <!-- Score Meter Widget Layout Component -->
+  <!-- Score Meter Widget -->
   <div class="meter-wrap">
     <div class="meter-label">Current Industry Benchmark</div>
     <div class="meter-score">62<span>/100</span></div>
@@ -154,3 +145,16 @@
   </div>
   <div class="trust-item">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+    Instant Digital Delivery
+  </div>
+</div>
+
+<!-- DETAILS SECTION -->
+<div class="section" id="details">
+  <p class="section-eyebrow">Framework Overview</p>
+  <h2 class="section-title">De-risk Your AI Strategy Before Deployment</h2>
+  <p class="section-sub">Stop guessing where your data, compute capabilities, or operational teams fall short. Use this rigorous checklist evaluation matrix.</p>
+
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-num">01</div>
