@@ -5,157 +5,71 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>AI Modernization Readiness Scorecard — Enterprise</title>
 <style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
   body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#F0F2F5;color:#111827;line-height:1.6}
- 
-  /* NAV */
   nav{background:#0B1120;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-  .nav-logo{color:#fff;font-weight:700;font-size:15px;letter-spacing:.3px}
-  .nav-logo span{color:#3B82F6}
+  .nav-logo{color:#fff;font-weight:700;font-size:15px;letter-spacing:.3px}.nav-logo span{color:#3B82F6}
   .nav-cta{background:#3B82F6;color:#fff;text-decoration:none;padding:9px 20px;border-radius:6px;font-size:13px;font-weight:600;transition:background .2s}
-  .nav-cta:hover{background:#2563EB}
- 
-  /* HERO */
-  .hero{background:linear-gradient(135deg,#0B1120 0%,#1E3A5F 100%);color:#fff;padding:80px 24px 72px;text-align:center}
+  .nav-cta:hover{background:#2563EB}.hero{background:linear-gradient(135deg,#0B1120 0%,#1E3A5F 100%);color:#fff;padding:80px 24px 72px;text-align:center}
   .hero-badge{display:inline-block;background:rgba(59,130,246,.18);border:1px solid rgba(59,130,246,.45);color:#93C5FD;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:28px}
   .hero h1{font-size:clamp(30px,5vw,54px);font-weight:800;line-height:1.1;letter-spacing:-.02em;max-width:780px;margin:0 auto 22px}
-  .hero h1 em{font-style:normal;color:#60A5FA}
-  .hero-sub{font-size:clamp(15px,2vw,18px);color:#94A3B8;max-width:580px;margin:0 auto 40px;line-height:1.7}
+  .hero h1 em{font-style:normal;color:#60A5FA}.hero-sub{font-size:clamp(15px,2vw,18px);color:#94A3B8;max-width:580px;margin:0 auto 40px;line-height:1.7}
   .hero-actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
   .btn-primary{display:inline-flex;align-items:center;gap:8px;background:#3B82F6;color:#fff;text-decoration:none;padding:16px 36px;border-radius:8px;font-size:16px;font-weight:700;transition:background .2s,transform .15s;box-shadow:0 4px 24px rgba(59,130,246,.4)}
-  .btn-primary:hover{background:#2563EB;transform:translateY(-2px)}
-  .btn-secondary{display:inline-flex;align-items:center;color:#CBD5E1;text-decoration:none;font-size:14px;font-weight:500;gap:6px}
-  .btn-secondary:hover{color:#fff}
-  .hero-note{color:#64748B;font-size:13px;margin-top:20px}
- 
-  /* SCORE METER */
+  .btn-primary:hover{background:#2563EB;transform:translateY(-2px)}.btn-secondary{display:inline-flex;align-items:center;color:#CBD5E1;text-decoration:none;font-size:14px;font-weight:500;gap:6px}
+  .btn-secondary:hover{color:#fff}.hero-note{color:#64748B;font-size:13px;margin-top:20px}
   .meter-wrap{margin:56px auto 0;max-width:480px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:32px 36px}
   .meter-label{font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#64748B;margin-bottom:10px}
-  .meter-score{font-size:58px;font-weight:800;letter-spacing:-.04em;line-height:1}
-  .meter-score span{font-size:22px;color:#64748B;font-weight:400}
+  .meter-score{font-size:58px;font-weight:800;letter-spacing:-.04em;line-height:1}.meter-score span{font-size:22px;color:#64748B;font-weight:400}
   .meter-bar-track{background:rgba(255,255,255,.08);border-radius:99px;height:10px;margin:18px 0 10px;overflow:hidden}
   .meter-bar-fill{height:100%;width:62%;background:linear-gradient(90deg,#F59E0B,#3B82F6);border-radius:99px;animation:fillBar 1.6s ease forwards}
-  @keyframes fillBar{from{width:0}to{width:62%}}
-  .meter-zones{display:flex;justify-content:space-between;font-size:11px;color:#64748B}
- 
-  /* STRIP */
+  @keyframes fillBar{from{width:0}to{width:62%}}.meter-zones{display:flex;justify-content:space-between;font-size:11px;color:#64748B}
   .trust-strip{background:#0B1120;border-top:1px solid #1E293B;border-bottom:1px solid #1E293B;padding:20px 24px;display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
-  .trust-item{color:#64748B;font-size:13px;font-weight:500;display:flex;align-items:center;gap:8px}
-  .trust-item svg{color:#3B82F6;flex-shrink:0}
- 
-  /* SECTIONS */
-  .section{padding:72px 24px;max-width:1040px;margin:0 auto}
-  .section-eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#3B82F6;margin-bottom:12px}
+  .trust-item{color:#64748B;font-size:13px;font-weight:500;display:flex;align-items:center;gap:8px}.trust-item svg{color:#3B82F6;flex-shrink:0}
+  .section{padding:72px 24px;max-width:1040px;margin:0 auto}.section-eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#3B82F6;margin-bottom:12px}
   .section-title{font-size:clamp(24px,3.5vw,38px);font-weight:800;line-height:1.15;letter-spacing:-.02em;margin-bottom:14px;color:#111827}
   .section-sub{font-size:16px;color:#6B7280;max-width:540px;line-height:1.7}
-  .divider{border:none;border-top:1px solid #E5E7EB;margin:0}
- 
-  /* WHAT YOU GET */
-  .get-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:40px}
-  .get-card{background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:24px 20px;transition:border-color .2s,box-shadow .2s}
-  .get-card:hover{border-color:#3B82F6;box-shadow:0 4px 16px rgba(59,130,246,.12)}
-  .get-icon{width:40px;height:40px;background:#EFF6FF;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:#3B82F6}
-  .get-title{font-weight:700;font-size:14px;margin-bottom:6px;color:#111827}
-  .get-desc{font-size:13px;color:#6B7280;line-height:1.6}
- 
-  /* WHO IT'S FOR */
-  .persona-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:40px}
-  .persona{background:#fff;border-left:3px solid #3B82F6;border-radius:0 8px 8px 0;padding:20px 22px}
-  .persona-role{font-weight:700;font-size:14px;color:#111827;margin-bottom:6px}
-  .persona-desc{font-size:13px;color:#6B7280;line-height:1.6}
- 
-  /* DIMENSIONS LIST */
-  .dims{margin-top:36px;display:flex;flex-direction:column;gap:8px}
-  .dim{display:flex;align-items:flex-start;gap:14px;background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:16px 18px}
-  .dim-num{font-size:11px;font-weight:700;color:#3B82F6;background:#EFF6FF;border-radius:4px;padding:3px 8px;flex-shrink:0;margin-top:1px;letter-spacing:.5px}
-  .dim-text strong{font-size:14px;font-weight:700;color:#111827;display:block;margin-bottom:3px}
-  .dim-text span{font-size:13px;color:#6B7280}
- 
-  /* CHECKLIST */
-  .check-list{list-style:none;margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .check-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#374151;background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:12px 14px}
-  .check-list li::before{content:'✓';width:20px;height:20px;border-radius:50%;background:#3B82F6;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
- 
-  /* CTA BOX */
   .cta-box{background:linear-gradient(135deg,#0B1120,#1E3A5F);color:#fff;border-radius:16px;padding:56px 40px;text-align:center;margin-top:64px}
-  .cta-box h2{font-size:clamp(24px,3.5vw,38px);font-weight:800;letter-spacing:-.02em;margin-bottom:12px}
-  .cta-box p{color:#94A3B8;font-size:16px;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
-  .cta-price{font-size:48px;font-weight:800;letter-spacing:-.04em;margin-bottom:6px}
-  .cta-price small{font-size:20px;color:#94A3B8;font-weight:400;vertical-align:middle}
-  .cta-once{font-size:13px;color:#64748B;margin-bottom:32px}
- 
-  /* FOOTER */
-  footer{background:#0B1120;color:#64748B;text-align:center;padding:28px 24px;font-size:13px}
- 
-  /* RESPONSIVE */
-  @media(max-width:640px){
-    .trust-strip{gap:20px}
-    .check-list{grid-template-columns:1fr}
-    .cta-box{padding:40px 24px}
-    nav{flex-direction:column;gap:12px;text-align:center}
-  }
+  .cta-box h2{font-size:clamp(24px,3.5vw,38px);font-weight:800;letter-spacing:-.02em;margin-bottom:12px}.cta-box p{color:#94A3B8;font-size:16px;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
+  .cta-price{font-size:48px;font-weight:800;letter-spacing:-.04em;margin-bottom:6px}.cta-price small{font-size:20px;color:#94A3B8;font-weight:400;vertical-align:middle}
+  .cta-once{font-size:13px;color:#64748B;margin-bottom:32px}footer{background:#0B1120;color:#64748B;text-align:center;padding:28px 24px;font-size:13px}
+  @media(max-width:640px){.trust-strip{gap:20px}nav{flex-direction:column;gap:12px;text-align:center}.cta-box{padding:40px 24px}}
 </style>
 </head>
 <body>
- 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">AI<span>Readiness</span> Scorecard</div>
-  <a href="https://gumroad.com" target="_blank" rel="noopener" class="nav-cta">Download Now →</a>
+  <a href="https://nextgengroup1.gumroad.com/l/ai-modernization-scorecard-enterprise" target="_blank" rel="noopener" class="nav-cta">Download Now →</a>
 </nav>
- 
-<!-- HERO -->
 <div class="hero">
   <p class="hero-badge">Enterprise Edition</p>
   <h1>Know Exactly How Ready Your Enterprise Is for <em>AI Modernization</em></h1>
   <p class="hero-sub">A structured, 8-dimension scorecard that gives C-suite leaders and transformation teams a clear, defensible picture of AI readiness — before committing budget.</p>
   <div class="hero-actions">
-    <a href="https://gumroad.com" target="_blank" rel="noopener" class="btn-primary">Download Scorecard Now</a>
+    <a href="https://nextgengroup1.gumroad.com/l/ai-modernization-scorecard-enterprise" target="_blank" rel="noopener" class="btn-primary">Download Scorecard Now</a>
     <a href="#details" class="btn-secondary">Learn more ↓</a>
   </div>
-  
-  <!-- Score Meter Widget -->
   <div class="meter-wrap">
     <div class="meter-label">Current Industry Benchmark</div>
     <div class="meter-score">62<span>/100</span></div>
-    <div class="meter-bar-track">
-      <div class="meter-bar-fill"></div>
-    </div>
-    <div class="meter-zones">
-      <span>Legacy Risk</span>
-      <span>AI Optimized</span>
-    </div>
+    <div class="meter-bar-track"><div class="meter-bar-fill"></div></div>
+    <div class="meter-zones"><span>Legacy Risk</span><span>AI Optimized</span></div>
   </div>
   <p class="hero-note">Most enterprises score below 65. Discover your baseline instantly.</p>
 </div>
-
-<!-- TRUST STRIP -->
-<div class="trust-strip">
-  <div class="trust-item">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-    8 Core Strategy Dimensions
-  </div>
-  <div class="trust-item">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-    Executive-Ready Presentation
-  </div>
-  <div class="trust-item">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-    Instant Digital Delivery
+<div class="trust-strip" id="details">
+  <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> 8 Core Strategy Dimensions</div>
+  <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Executive-Ready Presentation</div>
+  <div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Instant Digital Delivery</div>
+</div>
+<div class="section">
+  <div class="cta-box">
+    <h2>Secure Complete Infrastructure Transparency</h2>
+    <p>Download the scorecard template package today. Run an exhaustive evaluation matrix within your corporate framework.</p>
+    <div class="cta-price">$49<small>.00</small></div><div class="cta-once">One-Time Corporate Purchase</div>
+    <a href="https://nextgengroup1.gumroad.com/l/ai-modernization-scorecard-enterprise" target="_blank" rel="noopener" class="btn-primary" style="background:#fff; color:#0B1120; box-shadow:none;">Get Corporate Access Now</a>
   </div>
 </div>
-
-<!-- DETAILS SECTION -->
-<div class="section" id="details">
-  <p class="section-eyebrow">Framework Overview</p>
-  <h2 class="section-title">De-risk Your AI Strategy Before Deployment</h2>
-  <p class="section-sub">Stop guessing where your data, compute capabilities, or operational teams fall short. Use this rigorous checklist evaluation matrix.</p>
-
-  <div class="dims">
-    <div class="dim">
-      <div class="dim-num">01</div>
-      <div class="dim-text"><strong>Data Architecture & Maturity</strong><span>Evaluates schema readiness, vector storage pipeline scale, and ingestion latency.</span></div>
-    </div>
-    <div class="dim">
-      <div class="dim-num">02</div>
+<footer><p>&copy; 2026 NextGen Group. All Rights Reserved. Enterprise Systems Framework.</p></footer>
+</body>
+</html>
