@@ -5,80 +5,323 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>AI Modernization Readiness Scorecard — Enterprise</title>
 <style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
   body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#F0F2F5;color:#111827;line-height:1.6}
+
+  /* NAV */
   nav{background:#0B1120;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-  .nav-logo{color:#fff;font-weight:700;font-size:15px;letter-spacing:.3px}.nav-logo span{color:#3B82F6}
+  .nav-logo{color:#fff;font-weight:700;font-size:15px;letter-spacing:.3px}
+  .nav-logo span{color:#3B82F6}
   .nav-cta{background:#3B82F6;color:#fff;text-decoration:none;padding:9px 20px;border-radius:6px;font-size:13px;font-weight:600;transition:background .2s}
-  .nav-cta:hover{background:#2563EB}.hero{background:linear-gradient(135deg,#0B1120 0%,#1E3A5F 100%);color:#fff;padding:80px 24px 72px;text-align:center}
+  .nav-cta:hover{background:#2563EB}
+
+  /* HERO */
+  .hero{background:linear-gradient(135deg,#0B1120 0%,#1E3A5F 100%);color:#fff;padding:80px 24px 72px;text-align:center}
   .hero-badge{display:inline-block;background:rgba(59,130,246,.18);border:1px solid rgba(59,130,246,.45);color:#93C5FD;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:28px}
   .hero h1{font-size:clamp(30px,5vw,54px);font-weight:800;line-height:1.1;letter-spacing:-.02em;max-width:780px;margin:0 auto 22px}
-  .hero h1 em{font-style:normal;color:#60A5FA}.hero-sub{font-size:clamp(15px,2vw,18px);color:#94A3B8;max-width:580px;margin:0 auto 40px;line-height:1.7}
+  .hero h1 em{font-style:normal;color:#60A5FA}
+  .hero-sub{font-size:clamp(15px,2vw,18px);color:#94A3B8;max-width:580px;margin:0 auto 40px;line-height:1.7}
   .hero-actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
   .btn-primary{display:inline-flex;align-items:center;gap:8px;background:#3B82F6;color:#fff;text-decoration:none;padding:16px 36px;border-radius:8px;font-size:16px;font-weight:700;transition:background .2s,transform .15s;box-shadow:0 4px 24px rgba(59,130,246,.4)}
-  .btn-primary:hover{background:#2563EB;transform:translateY(-2px)}.btn-secondary{display:inline-flex;align-items:center;color:#CBD5E1;text-decoration:none;font-size:14px;font-weight:500;gap:6px}
-  .btn-secondary:hover{color:#fff}.hero-note{color:#64748B;font-size:13px;margin-top:20px}
+  .btn-primary:hover{background:#2563EB;transform:translateY(-2px)}
+  .btn-secondary{display:inline-flex;align-items:center;color:#CBD5E1;text-decoration:none;font-size:14px;font-weight:500;gap:6px}
+  .btn-secondary:hover{color:#fff}
+  .hero-note{color:#64748B;font-size:13px;margin-top:20px}
+
+  /* SCORE METER — signature element */
   .meter-wrap{margin:56px auto 0;max-width:480px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:32px 36px}
   .meter-label{font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#64748B;margin-bottom:10px}
-  .meter-score{font-size:58px;font-weight:800;letter-spacing:-.04em;line-height:1}.meter-score span{font-size:22px;color:#64748B;font-weight:400}
+  .meter-score{font-size:58px;font-weight:800;letter-spacing:-.04em;line-height:1}
+  .meter-score span{font-size:22px;color:#64748B;font-weight:400}
   .meter-bar-track{background:rgba(255,255,255,.08);border-radius:99px;height:10px;margin:18px 0 10px;overflow:hidden}
   .meter-bar-fill{height:100%;width:62%;background:linear-gradient(90deg,#F59E0B,#3B82F6);border-radius:99px;animation:fillBar 1.6s ease forwards}
-  @keyframes fillBar{from{width:0}to{width:62%}}.meter-zones{display:flex;justify-content:space-between;font-size:11px;color:#64748B}
+  @keyframes fillBar{from{width:0}to{width:62%}}
+  .meter-zones{display:flex;justify-content:space-between;font-size:11px;color:#64748B}
+
+  /* STRIP */
   .trust-strip{background:#0B1120;border-top:1px solid #1E293B;border-bottom:1px solid #1E293B;padding:20px 24px;display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
-  .trust-item{color:#64748B;font-size:13px;font-weight:500;display:flex;align-items:center;gap:8px}.trust-item svg{color:#3B82F6;flex-shrink:0}
-  .section{padding:72px 24px;max-width:1040px;margin:0 auto}.section-eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#3B82F6;margin-bottom:12px}
+  .trust-item{color:#64748B;font-size:13px;font-weight:500;display:flex;align-items:center;gap:8px}
+  .trust-item svg{color:#3B82F6;flex-shrink:0}
+
+  /* SECTIONS */
+  .section{padding:72px 24px;max-width:1040px;margin:0 auto}
+  .section-eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#3B82F6;margin-bottom:12px}
   .section-title{font-size:clamp(24px,3.5vw,38px);font-weight:800;line-height:1.15;letter-spacing:-.02em;margin-bottom:14px;color:#111827}
   .section-sub{font-size:16px;color:#6B7280;max-width:540px;line-height:1.7}
+  .divider{border:none;border-top:1px solid #E5E7EB;margin:0}
+
+  /* WHAT YOU GET */
+  .get-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:40px}
+  .get-card{background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:24px 20px;transition:border-color .2s,box-shadow .2s}
+  .get-card:hover{border-color:#3B82F6;box-shadow:0 4px 16px rgba(59,130,246,.12)}
+  .get-icon{width:40px;height:40px;background:#EFF6FF;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:#3B82F6}
+  .get-title{font-weight:700;font-size:14px;margin-bottom:6px;color:#111827}
+  .get-desc{font-size:13px;color:#6B7280;line-height:1.6}
+
+  /* WHO IT'S FOR */
+  .persona-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:40px}
+  .persona{background:#fff;border-left:3px solid #3B82F6;border-radius:0 8px 8px 0;padding:20px 22px}
+  .persona-role{font-weight:700;font-size:14px;color:#111827;margin-bottom:6px}
+  .persona-desc{font-size:13px;color:#6B7280;line-height:1.6}
+
+  /* DIMENSIONS LIST */
+  .dims{margin-top:36px;display:flex;flex-direction:column;gap:8px}
+  .dim{display:flex;align-items:flex-start;gap:14px;background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:16px 18px}
+  .dim-num{font-size:11px;font-weight:700;color:#3B82F6;background:#EFF6FF;border-radius:4px;padding:3px 8px;flex-shrink:0;margin-top:1px;letter-spacing:.5px}
+  .dim-text strong{font-size:14px;font-weight:700;color:#111827;display:block;margin-bottom:3px}
+  .dim-text span{font-size:13px;color:#6B7280}
+
+  /* CHECKLIST */
+  .check-list{list-style:none;margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .check-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#374151;background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:12px 14px}
+  .check-list li::before{content:'✓';width:20px;height:20px;border-radius:50%;background:#3B82F6;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+
+  /* CTA BOX */
   .cta-box{background:linear-gradient(135deg,#0B1120,#1E3A5F);color:#fff;border-radius:16px;padding:56px 40px;text-align:center;margin-top:64px}
-  .cta-box h2{font-size:clamp(24px,3.5vw,38px);font-weight:800;letter-spacing:-.02em;margin-bottom:12px}.cta-box p{color:#94A3B8;font-size:16px;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
-  .cta-price{font-size:48px;font-weight:800;letter-spacing:-.04em;margin-bottom:6px}.cta-price small{font-size:20px;color:#94A3B8;font-weight:400;vertical-align:middle}
-  .cta-once{font-size:13px;color:#64748B;margin-bottom:32px}footer{background:#0B1120;color:#64748B;text-align:center;padding:28px 24px;font-size:13px}
-  @media(max-width:640px){.trust-strip{gap:20px}nav{flex-direction:column;gap:12px;text-align:center}.cta-box{padding:40px 24px}}
+  .cta-box h2{font-size:clamp(24px,3.5vw,38px);font-weight:800;letter-spacing:-.02em;margin-bottom:12px}
+  .cta-box p{color:#94A3B8;font-size:16px;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
+  .cta-price{font-size:48px;font-weight:800;letter-spacing:-.04em;margin-bottom:6px}
+  .cta-price small{font-size:20px;color:#94A3B8;font-weight:400;vertical-align:middle}
+  .cta-once{font-size:13px;color:#64748B;margin-bottom:32px}
+
+  /* FAQ */
+  .faq{margin-top:40px;display:flex;flex-direction:column;gap:8px}
+  details{background:#fff;border:1px solid #E5E7EB;border-radius:8px;overflow:hidden}
+  summary{padding:16px 18px;font-weight:600;font-size:14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;list-style:none;color:#111827}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:'+';font-size:20px;font-weight:300;color:#3B82F6;transition:transform .2s;line-height:1}
+  details[open] summary::after{transform:rotate(45deg)}
+  .faq-body{padding:0 18px 16px;font-size:14px;color:#6B7280;line-height:1.7}
+
+  /* FOOTER */
+  footer{background:#0B1120;color:#64748B;text-align:center;padding:28px 24px;font-size:13px}
+
+  /* RESPONSIVE */
+  @media(max-width:640px){
+    .trust-strip{gap:20px}
+    .check-list{grid-template-columns:1fr}
+    .cta-box{padding:40px 24px}
+    nav{flex-direction:column;gap:12px;text-align:center}
+  }
 </style>
 </head>
 <body>
+
+<!-- NAV -->
 <nav>
   <div class="nav-logo">AI<span>Readiness</span> Scorecard</div>
-  <a href="https://nextgengroup1.gumroad.com/l/ai-modernization-scorecard-enterprise" target="_blank" rel="noopener" class="nav-cta">Download Now →</a>
+  <a href="https://nextgengroup1.gumroad.com/l/ai-modernization-scorecard-enterprise" class="nav-cta">Download Now →</a>
 </nav>
+
+<!-- HERO -->
 <div class="hero">
   <p class="hero-badge">Enterprise Edition</p>
   <h1>Know Exactly How Ready Your Enterprise Is for <em>AI Modernization</em></h1>
   <p class="hero-sub">A structured, 8-dimension scorecard that gives C-suite leaders and transformation teams a clear, defensible picture of AI readiness — before committing budget.</p>
   <div class="hero-actions">
-    <a href="https://nextgengroup1.gumroad.com/l/ai-modernization-scorecard-enterprise" target="_blank" rel="noopener" class="btn-primary">Download Scorecard Now</a>
-    <a href="#details" class="btn-secondary">Learn more ↓</a>
+    <a href="https://nextgengroup1.gumroad.com/l/ai-modernization-scorecard-enterprise" class="btn-primary">
+      ⬇ Download the Scorecard
+    </a>
   </div>
+  <p class="hero-note">One-time purchase · Instant PDF + Excel delivery</p>
+
+  <!-- Score meter: signature element -->
   <div class="meter-wrap">
-    <div class="meter-label">Current Industry Benchmark</div>
-    <div class="meter-score">62<span>/100</span></div>
+    <p class="meter-label">Sample Output — Your AI Readiness Score</p>
+    <div class="meter-score">62 <span>/ 100</span></div>
     <div class="meter-bar-track"><div class="meter-bar-fill"></div></div>
-    <div class="meter-zones"><span>Legacy Risk</span><span>AI Optimized</span></div>
-  </div>
-  <p class="hero-note">Most enterprises score below 65. Discover your baseline instantly.</p>
-</div>
-<div class="trust-strip" id="details">
-  <div class="trust-item">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-    <span>8 Core Strategy Dimensions</span>
-  </div>
-  <div class="trust-item">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-    <span>Executive-Ready Presentation</span>
-  </div>
-  <div class="trust-item">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-    <span>Instant Digital Delivery</span>
+    <div class="meter-zones">
+      <span>0 — Lagging</span>
+      <span>40 — Developing</span>
+      <span>70 — Advanced</span>
+      <span>100 — Leading</span>
+    </div>
   </div>
 </div>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-item">
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    Instant digital delivery
+  </div>
+  <div class="trust-item">
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+    Secure Gumroad checkout
+  </div>
+  <div class="trust-item">
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+    PDF + Excel included
+  </div>
+  <div class="trust-item">
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+    Free future updates
+  </div>
+</div>
+
+<!-- WHAT YOU GET -->
+<hr class="divider"/>
 <div class="section">
-  <div class="cta-box">
-    <h2>Secure Complete Infrastructure Transparency</h2>
-    <p>Download the scorecard template package today. Run an exhaustive evaluation matrix within your corporate framework.</p>
-    <div class="cta-price">$49<small>.00</small></div><div class="cta-once">One-Time Corporate Purchase</div>
-    <a href="https://nextgengroup1.gumroad.com/l/ai-modernization-scorecard-enterprise" target="_blank" rel="noopener" class="btn-primary" style="background:#fff; color:#0B1120; box-shadow:none;">Get Corporate Access Now</a>
+  <p class="section-eyebrow">What's included</p>
+  <h2 class="section-title">Everything to run a rigorous AI readiness assessment</h2>
+  <p class="section-sub">Built for enterprise transformation teams who need to move fast without skipping the governance work.</p>
+  <div class="get-grid">
+    <div class="get-card">
+      <div class="get-icon">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+      </div>
+      <p class="get-title">Scored Assessment Framework</p>
+      <p class="get-desc">Weighted scoring across 8 dimensions, auto-calculated in the Excel model.</p>
+    </div>
+    <div class="get-card">
+      <div class="get-icon">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+      </div>
+      <p class="get-title">Executive Summary Template</p>
+      <p class="get-desc">A boardroom-ready PDF slide template pre-populated by your scores.</p>
+    </div>
+    <div class="get-card">
+      <div class="get-icon">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+      </div>
+      <p class="get-title">Maturity Benchmarks</p>
+      <p class="get-desc">Industry benchmarks so you know where you stand vs. peers at each stage.</p>
+    </div>
+    <div class="get-card">
+      <div class="get-icon">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+      </div>
+      <p class="get-title">Gap & Priority Matrix</p>
+      <p class="get-desc">Instantly surfaces your top 3 blockers and recommended next actions.</p>
+    </div>
+    <div class="get-card">
+      <div class="get-icon">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      </div>
+      <p class="get-title">Stakeholder Interview Guide</p>
+      <p class="get-desc">Structured questions to gather inputs from IT, HR, Legal, and Operations.</p>
+    </div>
+    <div class="get-card">
+      <div class="get-icon">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      </div>
+      <p class="get-title">90-Day Quick-Win Roadmap</p>
+      <p class="get-desc">Actionable sprint plan tied directly to your lowest-scoring dimensions.</p>
+    </div>
   </div>
 </div>
-<footer><p>&copy; 2026 NextGen Group. All Rights Reserved. Enterprise Systems Framework.</p></footer>
+
+<!-- 8 DIMENSIONS -->
+<hr class="divider"/>
+<div class="section">
+  <p class="section-eyebrow">The 8 dimensions</p>
+  <h2 class="section-title">A complete picture, not just a checklist</h2>
+  <p class="section-sub">Each dimension is scored 0–100 with weighted importance. No dimension is ignored.</p>
+  <div class="dims">
+    <div class="dim"><span class="dim-num">D1</span><div class="dim-text"><strong>Data Infrastructure &amp; Governance</strong><span>Data quality, pipelines, labeling standards, and access controls.</span></div></div>
+    <div class="dim"><span class="dim-num">D2</span><div class="dim-text"><strong>AI Strategy &amp; Executive Alignment</strong><span>Clarity of AI vision, C-suite buy-in, and investment commitment.</span></div></div>
+    <div class="dim"><span class="dim-num">D3</span><div class="dim-text"><strong>Technology Stack &amp; MLOps Maturity</strong><span>Cloud readiness, tooling, CI/CD for models, and observability.</span></div></div>
+    <div class="dim"><span class="dim-num">D4</span><div class="dim-text"><strong>Talent &amp; Organizational Capability</strong><span>AI skill inventory, hiring pipeline, and upskilling programs.</span></div></div>
+    <div class="dim"><span class="dim-num">D5</span><div class="dim-text"><strong>Ethics, Risk &amp; Responsible AI</strong><span>Bias testing, explainability requirements, and governance frameworks.</span></div></div>
+    <div class="dim"><span class="dim-num">D6</span><div class="dim-text"><strong>Use Case Portfolio &amp; Business Value</strong><span>Clarity on priority use cases, ROI tracking, and pilot-to-production rate.</span></div></div>
+    <div class="dim"><span class="dim-num">D7</span><div class="dim-text"><strong>Change Management &amp; Culture</strong><span>Employee readiness, trust in AI tools, and adoption blockers.</span></div></div>
+    <div class="dim"><span class="dim-num">D8</span><div class="dim-text"><strong>Regulatory &amp; Compliance Readiness</strong><span>Industry-specific AI regulations, audit trails, and legal exposure.</span></div></div>
+  </div>
+</div>
+
+<!-- WHO IT'S FOR -->
+<hr class="divider"/>
+<div class="section">
+  <p class="section-eyebrow">Who it's for</p>
+  <h2 class="section-title">Built for the people making the decisions</h2>
+  <div class="persona-grid">
+    <div class="persona">
+      <p class="persona-role">Chief Digital / AI Officers</p>
+      <p class="persona-desc">Build a defensible AI investment case with scored evidence, not gut feel.</p>
+    </div>
+    <div class="persona">
+      <p class="persona-role">VP / Director of Technology</p>
+      <p class="persona-desc">Identify infrastructure gaps before a failed AI pilot exposes them the hard way.</p>
+    </div>
+    <div class="persona">
+      <p class="persona-role">Digital Transformation Leads</p>
+      <p class="persona-desc">Structure your readiness conversation across every business unit consistently.</p>
+    </div>
+    <div class="persona">
+      <p class="persona-role">Strategy &amp; Management Consultants</p>
+      <p class="persona-desc">Run a credible AI readiness workshop with clients in under half a day.</p>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT'S INSIDE (checklist) -->
+<hr class="divider"/>
+<div class="section">
+  <p class="section-eyebrow">Delivery details</p>
+  <h2 class="section-title">Immediately usable after download</h2>
+  <ul class="check-list">
+    <li>Scored Excel workbook with auto-calculated radar chart</li>
+    <li>Printable PDF assessment worksheet (A4 + Letter)</li>
+    <li>Executive summary slide deck template (PowerPoint)</li>
+    <li>Stakeholder interview question bank (Word / PDF)</li>
+    <li>Dimension benchmark data (industry averages by sector)</li>
+    <li>90-day quick-win action plan template</li>
+    <li>Scoring methodology explainer (2-page PDF)</li>
+    <li>Free updates as the AI landscape evolves</li>
+  </ul>
+</div>
+
+<!-- CTA BOX -->
+<div style="padding:0 24px;max-width:1040px;margin:0 auto">
+  <div class="cta-box">
+    <h2>Start your AI readiness assessment today</h2>
+    <p>Stop guessing. Know your score, own the conversation, and move forward with confidence.</p>
+    <div class="cta-price">$97 <small>one-time</small></div>
+    <p class="cta-once">Instant delivery · PDF + Excel + PowerPoint · Free updates</p>
+    <a href="https://nextgengroup1.gumroad.com/l/ai-modernization-scorecard-enterprise" class="btn-primary" style="font-size:17px;padding:18px 48px;box-shadow:0 6px 32px rgba(59,130,246,.5)">
+      ⬇ Download Now
+    </a>
+    <p style="color:#475569;font-size:12px;margin-top:20px;display:flex;align-items:center;justify-content:center;gap:6px">
+      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      Secure checkout by Gumroad · Buyer protection included
+    </p>
+  </div>
+</div>
+
+<!-- FAQ -->
+<hr class="divider" style="margin-top:64px"/>
+<div class="section">
+  <p class="section-eyebrow">FAQ</p>
+  <h2 class="section-title">Common questions</h2>
+  <div class="faq">
+    <details>
+      <summary>What file formats are included?</summary>
+      <p class="faq-body">You receive a scored Excel workbook (.xlsx), a PDF assessment worksheet, a PowerPoint executive summary template, and a Word-format interview guide. Everything works in Microsoft Office and Google Workspace.</p>
+    </details>
+    <details>
+      <summary>How long does it take to run the assessment?</summary>
+      <p class="faq-body">A solo assessment using the worksheet takes 2–3 hours. A full stakeholder workshop using the interview guide typically runs a half-day. The Excel model scores in real time as you enter inputs.</p>
+    </details>
+    <details>
+      <summary>Is this suitable for a specific industry?</summary>
+      <p class="faq-body">Yes. The scorecard includes benchmark data segmented by industry (financial services, healthcare, manufacturing, retail, and tech). Weights can be adjusted in the Excel model to reflect your sector's regulatory environment.</p>
+    </details>
+    <details>
+      <summary>Can I use this with multiple clients or business units?</summary>
+      <p class="faq-body">The single license covers one organization. For agency or consulting use across multiple client engagements, please use the multi-seat option on the product page.</p>
+    </details>
+    <details>
+      <summary>How do I access the files after purchase?</summary>
+      <p class="faq-body">Gumroad emails you a secure download link immediately after payment. You can also re-download anytime from your Gumroad library. No account required to purchase.</p>
+    </details>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>AI Modernization Readiness Scorecard — Enterprise Edition &nbsp;·&nbsp; Sold securely via Gumroad</p>
+</footer>
+
 </body>
 </html>
