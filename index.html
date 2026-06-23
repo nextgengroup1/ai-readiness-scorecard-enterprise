@@ -1,108 +1,354 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>AI Modernization Readiness Scorecard — Enterprise </title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Modernization Readiness Scorecard — Enterprise</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#F0F2F5;color:#111827;line-height:1.6}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* NAV */
-  nav{background:#0B1120;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-  .nav-logo{color:#fff;font-weight:700;font-size:15px;letter-spacing:.3px}
-  .nav-logo span{color:#3B82F6}
-  .nav-cta{background:#3B82F6;color:#fff;text-decoration:none;padding:9px 20px;border-radius:6px;font-size:13px;font-weight:600;transition:background .2s}
-  .nav-cta:hover{background:#2563EB}
+  :root {
+    --ink: #0f0f0f;
+    --slate: #1c2333;
+    --mid: #4a5568;
+    --muted: #8a97a8;
+    --rule: #e2e6ea;
+    --bg: #f8f9fb;
+    --white: #ffffff;
+    --gold: #b8860b;
+    --gold-light: #f0c040;
+    --gold-bg: #fdf8ee;
+    --accent: #1a3a5c;
+    --accent-light: #e8f0f8;
+    --danger: #c0392b;
+  }
 
-  /* HERO */
-  .hero{background:linear-gradient(135deg,#0B1120 0%,#1E3A5F 100%);color:#fff;padding:80px 24px 72px;text-align:center}
-  .hero-badge{display:inline-block;background:rgba(59,130,246,.18);border:1px solid rgba(59,130,246,.45);color:#93C5FD;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:28px}
-  .hero h1{font-size:clamp(30px,5vw,54px);font-weight:800;line-height:1.1;letter-spacing:-.02em;max-width:780px;margin:0 auto 22px}
-  .hero h1 em{font-style:normal;color:#60A5FA}
-  .hero-sub{font-size:clamp(15px,2vw,18px);color:#94A3B8;max-width:580px;margin:0 auto 40px;line-height:1.7}
-  .hero-actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
-  .btn-primary{display:inline-flex;align-items:center;gap:8px;background:#3B82F6;color:#fff;text-decoration:none;padding:16px 36px;border-radius:8px;font-size:16px;font-weight:700;transition:background .2s,transform .15s;box-shadow:0 4px 24px rgba(59,130,246,.4)}
-  .btn-primary:hover{background:#2563EB;transform:translateY(-2px)}
-  .btn-secondary{display:inline-flex;align-items:center;color:#CBD5E1;text-decoration:none;font-size:14px;font-weight:500;gap:6px}
-  .btn-secondary:hover{color:#fff}
-  .hero-note{color:#64748B;font-size:13px;margin-top:20px}
+  html { scroll-behavior: smooth; }
 
-  /* SCORE METER — signature element */
-  .meter-wrap{margin:56px auto 0;max-width:480px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:32px 36px}
-  .meter-label{font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#64748B;margin-bottom:10px}
-  .meter-score{font-size:58px;font-weight:800;letter-spacing:-.04em;line-height:1}
-  .meter-score span{font-size:22px;color:#64748B;font-weight:400}
-  .meter-bar-track{background:rgba(255,255,255,.08);border-radius:99px;height:10px;margin:18px 0 10px;overflow:hidden}
-  .meter-bar-fill{height:100%;width:62%;background:linear-gradient(90deg,#F59E0B,#3B82F6);border-radius:99px;animation:fillBar 1.6s ease forwards}
-  @keyframes fillBar{from{width:0}to{width:62%}}
-  .meter-zones{display:flex;justify-content:space-between;font-size:11px;color:#64748B}
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
-  /* STRIP */
-  .trust-strip{background:#0B1120;border-top:1px solid #1E293B;border-bottom:1px solid #1E293B;padding:20px 24px;display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
-  .trust-item{color:#64748B;font-size:13px;font-weight:500;display:flex;align-items:center;gap:8px}
-  .trust-item svg{color:#3B82F6;flex-shrink:0}
+  /* ─── NAV ─── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 700; font-size: 1rem;
+    color: var(--accent); letter-spacing: -0.01em;
+  }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--white);
+    font-size: 0.8rem; font-weight: 600;
+    padding: 8px 18px; border-radius: 4px;
+    text-decoration: none; letter-spacing: 0.02em;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: #9a7209; }
 
-  /* SECTIONS */
-  .section{padding:72px 24px;max-width:1040px;margin:0 auto}
-  .section-eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#3B82F6;margin-bottom:12px}
-  .section-title{font-size:clamp(24px,3.5vw,38px);font-weight:800;line-height:1.15;letter-spacing:-.02em;margin-bottom:14px;color:#111827}
-  .section-sub{font-size:16px;color:#6B7280;max-width:540px;line-height:1.7}
-  .divider{border:none;border-top:1px solid #E5E7EB;margin:0}
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--slate);
+    color: var(--white);
+    padding: 90px 5% 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(184,134,11,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 60px; align-items: center;
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 900; line-height: 1.1;
+    letter-spacing: -0.02em; margin-bottom: 22px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold-light);
+  }
+  .hero-sub {
+    font-size: 1.1rem; color: rgba(255,255,255,0.75);
+    line-height: 1.65; max-width: 560px; margin-bottom: 36px;
+  }
+  .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--white);
+    font-size: 1rem; font-weight: 600;
+    padding: 16px 32px; border-radius: 5px;
+    text-decoration: none; letter-spacing: 0.01em;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #9a7209; transform: translateY(-1px); }
+  .hero-guarantee {
+    font-size: 0.8rem; color: rgba(255,255,255,0.5);
+  }
+  .hero-score-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 28px 24px;
+    min-width: 200px;
+    text-align: center;
+  }
+  .score-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 8px; }
+  .score-num {
+    font-family: 'Fraunces', serif;
+    font-size: 4rem; font-weight: 900;
+    color: var(--gold-light); line-height: 1;
+  }
+  .score-denom { font-size: 1rem; color: rgba(255,255,255,0.35); }
+  .score-verdict { font-size: 0.78rem; color: rgba(255,255,255,0.6); margin-top: 10px; line-height: 1.4; }
+  .score-bars { margin-top: 18px; display: flex; flex-direction: column; gap: 7px; }
+  .bar-row { display: flex; align-items: center; gap: 8px; }
+  .bar-name { font-size: 0.62rem; color: rgba(255,255,255,0.4); width: 72px; text-align: right; flex-shrink: 0; }
+  .bar-track { flex: 1; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; }
+  .bar-fill { height: 100%; border-radius: 2px; background: var(--gold-light); }
 
-  /* WHAT YOU GET */
-  .get-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:40px}
-  .get-card{background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:24px 20px;transition:border-color .2s,box-shadow .2s}
-  .get-card:hover{border-color:#3B82F6;box-shadow:0 4px 16px rgba(59,130,246,.12)}
-  .get-icon{width:40px;height:40px;background:#EFF6FF;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:#3B82F6}
-  .get-title{font-weight:700;font-size:14px;margin-bottom:6px;color:#111827}
-  .get-desc{font-size:13px;color:#6B7280;line-height:1.6}
+  /* ─── METHODOLOGY BAND ─── */
+  .method-band {
+    background: var(--gold-bg);
+    border-top: 2px solid var(--gold);
+    border-bottom: 1px solid #e8d89a;
+    padding: 28px 5%;
+    text-align: center;
+  }
+  .method-band p {
+    font-size: 0.85rem; color: #6b5700;
+    max-width: 700px; margin: 0 auto;
+    line-height: 1.6;
+  }
+  .method-band strong { color: var(--gold); }
 
-  /* WHO IT'S FOR */
-  .persona-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:40px}
-  .persona{background:#fff;border-left:3px solid #3B82F6;border-radius:0 8px 8px 0;padding:20px 22px}
-  .persona-role{font-weight:700;font-size:14px;color:#111827;margin-bottom:6px}
-  .persona-desc{font-size:13px;color:#6B7280;line-height:1.6}
+  /* ─── SECTIONS ─── */
+  .section { padding: 80px 5%; }
+  .section-inner { max-width: 900px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+  }
+  .section h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700; letter-spacing: -0.02em;
+    line-height: 1.2; margin-bottom: 18px; color: var(--slate);
+  }
+  .section-lead {
+    font-size: 1.05rem; color: var(--mid);
+    max-width: 640px; line-height: 1.7; margin-bottom: 48px;
+  }
+  hr.rule { border: none; border-top: 1px solid var(--rule); margin: 0; }
 
-  /* DIMENSIONS LIST */
-  .dims{margin-top:36px;display:flex;flex-direction:column;gap:8px}
-  .dim{display:flex;align-items:flex-start;gap:14px;background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:16px 18px}
-  .dim-num{font-size:11px;font-weight:700;color:#3B82F6;background:#EFF6FF;border-radius:4px;padding:3px 8px;flex-shrink:0;margin-top:1px;letter-spacing:.5px}
-  .dim-text strong{font-size:14px;font-weight:700;color:#111827;display:block;margin-bottom:3px}
-  .dim-text span{font-size:13px;color:#6B7280}
+  /* ─── AUTHOR ─── */
+  .author-block {
+    background: var(--accent-light);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 32px 36px;
+    display: grid; grid-template-columns: auto 1fr;
+    gap: 28px; align-items: start;
+  }
+  .author-avatar {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 1.6rem; font-weight: 900; color: var(--white);
+    flex-shrink: 0;
+  }
+  .author-quote {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem; font-style: italic;
+    color: var(--slate); line-height: 1.65;
+    margin-bottom: 14px;
+  }
+  .author-name { font-weight: 600; font-size: 0.88rem; color: var(--accent); }
+  .author-title { font-size: 0.82rem; color: var(--mid); margin-top: 2px; }
 
-  /* CHECKLIST */
-  .check-list{list-style:none;margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .check-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#374151;background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:12px 14px}
-  .check-list li::before{content:'✓';width:20px;height:20px;border-radius:50%;background:#3B82F6;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+  /* ─── DIMENSIONS ─── */
+  .dims-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .dim-card {
+    background: var(--white);
+    padding: 24px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .dim-card:hover { background: var(--bg); }
+  .dim-icon { font-size: 1.4rem; margin-bottom: 10px; }
+  .dim-title { font-weight: 600; font-size: 0.95rem; color: var(--slate); margin-bottom: 6px; }
+  .dim-risk {
+    font-size: 0.78rem; color: var(--mid);
+    line-height: 1.5;
+    display: none;
+  }
+  .dim-card.open .dim-risk { display: block; }
+  .dim-card.open { background: var(--accent-light); }
+  .dim-card.open .dim-title { color: var(--accent); }
+  .dim-toggle { font-size: 0.72rem; color: var(--muted); margin-top: 8px; }
 
-  /* CTA BOX */
-  .cta-box{background:linear-gradient(135deg,#0B1120,#1E3A5F);color:#fff;border-radius:16px;padding:56px 40px;text-align:center;margin-top:64px}
-  .cta-box h2{font-size:clamp(24px,3.5vw,38px);font-weight:800;letter-spacing:-.02em;margin-bottom:12px}
-  .cta-box p{color:#94A3B8;font-size:16px;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
-  .cta-price{font-size:48px;font-weight:800;letter-spacing:-.04em;margin-bottom:6px}
-  .cta-price small{font-size:20px;color:#94A3B8;font-weight:400;vertical-align:middle}
-  .cta-once{font-size:13px;color:#64748B;margin-bottom:32px}
+  /* ─── WHAT YOU GET ─── */
+  .deliverables {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+  .deliverable {
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 22px;
+  }
+  .del-icon { font-size: 1.5rem; margin-bottom: 10px; }
+  .del-title { font-weight: 600; font-size: 0.9rem; color: var(--slate); margin-bottom: 6px; }
+  .del-desc { font-size: 0.82rem; color: var(--mid); line-height: 1.55; }
 
-  /* FAQ */
-  .faq{margin-top:40px;display:flex;flex-direction:column;gap:8px}
-  details{background:#fff;border:1px solid #E5E7EB;border-radius:8px;overflow:hidden}
-  summary{padding:16px 18px;font-weight:600;font-size:14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;list-style:none;color:#111827}
-  summary::-webkit-details-marker{display:none}
-  summary::after{content:'+';font-size:20px;font-weight:300;color:#3B82F6;transition:transform .2s;line-height:1}
-  details[open] summary::after{transform:rotate(45deg)}
-  .faq-body{padding:0 18px 16px;font-size:14px;color:#6B7280;line-height:1.7}
+  /* ─── VALUE COMPARE ─── */
+  .compare-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  .compare-table th {
+    text-align: left; padding: 12px 16px;
+    font-weight: 600; font-size: 0.72rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    border-bottom: 2px solid var(--rule);
+    color: var(--mid);
+  }
+  .compare-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--rule);
+    color: var(--mid);
+    vertical-align: top;
+  }
+  .compare-table td:first-child { color: var(--ink); font-weight: 500; }
+  .compare-table .col-ours { background: var(--gold-bg); color: #5a4200 !important; }
+  .compare-table .col-ours.top { font-weight: 700; color: var(--gold) !important; }
+  .check { color: #27ae60; }
+  .cross { color: #e74c3c; }
 
-  /* FOOTER */
-  footer{background:#0B1120;color:#64748B;text-align:center;padding:28px 24px;font-size:13px}
+  /* ─── WHO ─── */
+  .personas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  .persona {
+    border: 1px solid var(--rule);
+    border-radius: 8px; padding: 22px;
+  }
+  .persona-role { font-weight: 600; font-size: 0.88rem; color: var(--accent); margin-bottom: 8px; }
+  .persona-pain { font-size: 0.82rem; color: var(--mid); line-height: 1.55; }
+  .persona-outcome { font-size: 0.8rem; color: var(--slate); font-weight: 500; margin-top: 10px; }
 
-  /* RESPONSIVE */
-  @media(max-width:640px){
-    .trust-strip{gap:20px}
-    .check-list{grid-template-columns:1fr}
-    .cta-box{padding:40px 24px}
-    nav{flex-direction:column;gap:12px;text-align:center}
+  /* ─── FAQ ─── */
+  .faq-list { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
+  .faq-item { border-bottom: 1px solid var(--rule); }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q {
+    width: 100%; background: none; border: none;
+    text-align: left; cursor: pointer;
+    padding: 20px 24px;
+    font-size: 0.92rem; font-weight: 600; color: var(--slate);
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 16px;
+  }
+  .faq-q:hover { background: var(--bg); }
+  .faq-chevron { flex-shrink: 0; transition: transform 0.2s; font-style: normal; color: var(--muted); }
+  .faq-item.open .faq-chevron { transform: rotate(180deg); }
+  .faq-a {
+    padding: 0 24px;
+    max-height: 0; overflow: hidden;
+    font-size: 0.87rem; color: var(--mid); line-height: 1.7;
+    transition: max-height 0.3s ease, padding 0.2s;
+  }
+  .faq-item.open .faq-a { max-height: 300px; padding-bottom: 20px; }
+
+  /* ─── CTA FOOTER ─── */
+  .cta-section {
+    background: var(--slate);
+    padding: 80px 5%;
+    text-align: center;
+    color: var(--white);
+  }
+  .cta-section h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 900; letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .cta-section p {
+    font-size: 1rem; color: rgba(255,255,255,0.65);
+    max-width: 500px; margin: 0 auto 36px;
+    line-height: 1.65;
+  }
+  .price-display {
+    display: inline-flex; align-items: baseline; gap: 6px;
+    margin-bottom: 28px;
+  }
+  .price-amount {
+    font-family: 'Fraunces', serif;
+    font-size: 3.5rem; font-weight: 900;
+    color: var(--gold-light); line-height: 1;
+  }
+  .price-vs {
+    font-size: 0.78rem; color: rgba(255,255,255,0.35);
+    text-decoration: line-through; margin-left: 8px;
+  }
+  .cta-sub {
+    font-size: 0.8rem; color: rgba(255,255,255,0.4);
+    margin-top: 16px;
+  }
+
+  footer {
+    padding: 24px 5%;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 640px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-score-card { display: none; }
+    .author-block { grid-template-columns: 1fr; }
+    .author-avatar { display: none; }
   }
 </style>
 </head>
@@ -110,218 +356,341 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">AI<span>Readiness</span> Scorecard</div>
-  <a href="https://nextgengroup1.gumroad.com/l/ai-modernization-scorecard-enterprise" class="nav-cta">Download Now →</a>
+  <span class="nav-brand">AI Readiness Scorecard</span>
+  <a href="#get" class="nav-cta">Get Scorecard — $97</a>
 </nav>
 
 <!-- HERO -->
-<div class="hero">
-  <p class="hero-badge">Enterprise Edition</p>
-  <h1>Know Exactly How Ready Your Enterprise Is for <em>AI Modernization</em></h1>
-  <p class="hero-sub">A structured, 8-dimension scorecard that gives C-suite leaders and transformation teams a clear, defensible picture of AI readiness — before committing budget.</p>
-  <div class="hero-actions">
-    <a href="https://nextgengroup1.gumroad.com/l/ai-modernization-scorecard-enterprise" class="btn-primary">
-      ⬇ Download the Scorecard
-    </a>
-  </div>
-  <p class="hero-note">One-time purchase · Instant PDF + Excel delivery</p>
-
-  <!-- Score meter: signature element -->
-  <div class="meter-wrap">
-    <p class="meter-label">Sample Output — Your AI Readiness Score</p>
-    <div class="meter-score">62 <span>/ 100</span></div>
-    <div class="meter-bar-track"><div class="meter-bar-fill"></div></div>
-    <div class="meter-zones">
-      <span>0 — Lagging</span>
-      <span>40 — Developing</span>
-      <span>70 — Advanced</span>
-      <span>100 — Leading</span>
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow">Enterprise AI Readiness · 8 Dimensions · 40+ Assessment Criteria</p>
+      <h1>Most AI initiatives fail<br>before they start.<br><em>Know your gaps first.</em></h1>
+      <p class="hero-sub">
+        A rigorous, methodology-backed scorecard built by a transformation executive.
+        Assess your enterprise across 8 critical dimensions in 5 minutes—and know exactly where to act.
+      </p>
+      <div class="hero-actions">
+        <a href="#get" class="btn-primary">Get Your Scorecard — $97</a>
+        <span class="hero-guarantee">30-day money-back guarantee</span>
+      </div>
+    </div>
+    <div class="hero-score-card" aria-hidden="true">
+      <div class="score-label">Sample Score</div>
+      <div><span class="score-num">62</span><span class="score-denom">/100</span></div>
+      <div class="score-verdict">Strong data infra · Critical gaps in change management</div>
+      <div class="score-bars">
+        <div class="bar-row"><span class="bar-name">Data</span><div class="bar-track"><div class="bar-fill" style="width:84%"></div></div></div>
+        <div class="bar-row"><span class="bar-name">Strategy</span><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div></div>
+        <div class="bar-row"><span class="bar-name">Talent</span><div class="bar-track"><div class="bar-fill" style="width:55%"></div></div></div>
+        <div class="bar-row"><span class="bar-name">Ops Model</span><div class="bar-track"><div class="bar-fill" style="width:42%"></div></div></div>
+        <div class="bar-row"><span class="bar-name">Change Mgmt</span><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div></div>
+        <div class="bar-row"><span class="bar-name">Governance</span><div class="bar-track"><div class="bar-fill" style="width:58%"></div></div></div>
+        <div class="bar-row"><span class="bar-name">Tech Stack</span><div class="bar-track"><div class="bar-fill" style="width:76%"></div></div></div>
+        <div class="bar-row"><span class="bar-name">Culture</span><div class="bar-track"><div class="bar-fill" style="width:48%"></div></div></div>
+      </div>
     </div>
   </div>
+</section>
+
+<!-- METHODOLOGY BAND -->
+<div class="method-band">
+  <p>
+    This scorecard synthesizes assessment frameworks from <strong>McKinsey, Deloitte, and BCG</strong>—
+    combined with real-world insight from 100+ enterprise transformation engagements.
+    Not a generic checklist. A practitioner's diagnostic.
+  </p>
 </div>
 
-<!-- TRUST STRIP -->
-<div class="trust-strip">
-  <div class="trust-item">
-    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-    Instant digital delivery
-  </div>
-  <div class="trust-item">
-    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-    Secure Gumroad checkout
-  </div>
-  <div class="trust-item">
-    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-    PDF + Excel included
-  </div>
-  <div class="trust-item">
-    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-    Free future updates
-  </div>
-</div>
+<hr class="rule">
 
-<!-- WHAT YOU GET -->
-<hr class="divider"/>
-<div class="section">
-  <p class="section-eyebrow">What's included</p>
-  <h2 class="section-title">Everything to run a rigorous AI readiness assessment</h2>
-  <p class="section-sub">Built for enterprise transformation teams who need to move fast without skipping the governance work.</p>
-  <div class="get-grid">
-    <div class="get-card">
-      <div class="get-icon">
-        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+<!-- AUTHOR -->
+<section class="section" style="padding-bottom: 0;">
+  <div class="section-inner">
+    <p class="section-eyebrow">Who Built This</p>
+    <div class="author-block">
+      <div class="author-avatar">NG</div>
+      <div>
+        <p class="author-quote">
+          "I've watched enterprises spend $5M on AI pilots that collapse because
+          nobody mapped the real gaps before signing the contract.
+          This scorecard is what I use with clients—distilled into a format any transformation leader
+          can run themselves in under 5 minutes."
+        </p>
+        <div class="author-name">Senior Transformation Executive</div>
+        <div class="author-title">20+ years leading enterprise modernization across Fortune 500 organizations</div>
       </div>
-      <p class="get-title">Scored Assessment Framework</p>
-      <p class="get-desc">Weighted scoring across 8 dimensions, auto-calculated in the Excel model.</p>
-    </div>
-    <div class="get-card">
-      <div class="get-icon">
-        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-      </div>
-      <p class="get-title">Executive Summary Template</p>
-      <p class="get-desc">A boardroom-ready PDF slide template pre-populated by your scores.</p>
-    </div>
-    <div class="get-card">
-      <div class="get-icon">
-        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-      </div>
-      <p class="get-title">Maturity Benchmarks</p>
-      <p class="get-desc">Industry benchmarks so you know where you stand vs. peers at each stage.</p>
-    </div>
-    <div class="get-card">
-      <div class="get-icon">
-        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
-      </div>
-      <p class="get-title">Gap & Priority Matrix</p>
-      <p class="get-desc">Instantly surfaces your top 3 blockers and recommended next actions.</p>
-    </div>
-    <div class="get-card">
-      <div class="get-icon">
-        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-      </div>
-      <p class="get-title">Stakeholder Interview Guide</p>
-      <p class="get-desc">Structured questions to gather inputs from IT, HR, Legal, and Operations.</p>
-    </div>
-    <div class="get-card">
-      <div class="get-icon">
-        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-      </div>
-      <p class="get-title">90-Day Quick-Win Roadmap</p>
-      <p class="get-desc">Actionable sprint plan tied directly to your lowest-scoring dimensions.</p>
     </div>
   </div>
-</div>
+</section>
+
+<hr class="rule" style="margin-top: 80px;">
 
 <!-- 8 DIMENSIONS -->
-<hr class="divider"/>
-<div class="section">
-  <p class="section-eyebrow">The 8 dimensions</p>
-  <h2 class="section-title">A complete picture, not just a checklist</h2>
-  <p class="section-sub">Each dimension is scored 0–100 with weighted importance. No dimension is ignored.</p>
-  <div class="dims">
-    <div class="dim"><span class="dim-num">D1</span><div class="dim-text"><strong>Data Infrastructure &amp; Governance</strong><span>Data quality, pipelines, labeling standards, and access controls.</span></div></div>
-    <div class="dim"><span class="dim-num">D2</span><div class="dim-text"><strong>AI Strategy &amp; Executive Alignment</strong><span>Clarity of AI vision, C-suite buy-in, and investment commitment.</span></div></div>
-    <div class="dim"><span class="dim-num">D3</span><div class="dim-text"><strong>Technology Stack &amp; MLOps Maturity</strong><span>Cloud readiness, tooling, CI/CD for models, and observability.</span></div></div>
-    <div class="dim"><span class="dim-num">D4</span><div class="dim-text"><strong>Talent &amp; Organizational Capability</strong><span>AI skill inventory, hiring pipeline, and upskilling programs.</span></div></div>
-    <div class="dim"><span class="dim-num">D5</span><div class="dim-text"><strong>Ethics, Risk &amp; Responsible AI</strong><span>Bias testing, explainability requirements, and governance frameworks.</span></div></div>
-    <div class="dim"><span class="dim-num">D6</span><div class="dim-text"><strong>Use Case Portfolio &amp; Business Value</strong><span>Clarity on priority use cases, ROI tracking, and pilot-to-production rate.</span></div></div>
-    <div class="dim"><span class="dim-num">D7</span><div class="dim-text"><strong>Change Management &amp; Culture</strong><span>Employee readiness, trust in AI tools, and adoption blockers.</span></div></div>
-    <div class="dim"><span class="dim-num">D8</span><div class="dim-text"><strong>Regulatory &amp; Compliance Readiness</strong><span>Industry-specific AI regulations, audit trails, and legal exposure.</span></div></div>
+<section class="section">
+  <div class="section-inner">
+    <p class="section-eyebrow">What You're Assessing</p>
+    <h2>8 dimensions. Every real failure mode covered.</h2>
+    <p class="section-lead">Click any dimension to see the failure risk it surfaces—and why it matters before you spend a dollar on AI.</p>
+    <div class="dims-grid" id="dims">
+      <div class="dim-card" onclick="toggleDim(this)">
+        <div class="dim-icon">🗄️</div>
+        <div class="dim-title">Data &amp; Infrastructure</div>
+        <div class="dim-risk">Can your systems actually feed an AI initiative? Poor data quality and fragmented infrastructure is the #1 silent killer of AI projects—usually discovered six months in.</div>
+        <div class="dim-toggle">↓ See the risk</div>
+      </div>
+      <div class="dim-card" onclick="toggleDim(this)">
+        <div class="dim-icon">🎯</div>
+        <div class="dim-title">Strategy &amp; Vision</div>
+        <div class="dim-risk">Do your leadership teams share the same definition of what AI success looks like? Misalignment at the top creates budget battles, scope drift, and initiative death-by-committee.</div>
+        <div class="dim-toggle">↓ See the risk</div>
+      </div>
+      <div class="dim-card" onclick="toggleDim(this)">
+        <div class="dim-icon">👥</div>
+        <div class="dim-title">Talent &amp; Skills</div>
+        <div class="dim-risk">You can't hire your way out of a capability gap mid-program. This dimension scores whether you have the right skills in-house—or a realistic plan to acquire them before they become blockers.</div>
+        <div class="dim-toggle">↓ See the risk</div>
+      </div>
+      <div class="dim-card" onclick="toggleDim(this)">
+        <div class="dim-icon">⚙️</div>
+        <div class="dim-title">Operating Model</div>
+        <div class="dim-risk">Most org structures were designed before AI existed. This dimension reveals whether your decision rights, team structures, and workflows can actually absorb AI-driven change—or resist it.</div>
+        <div class="dim-toggle">↓ See the risk</div>
+      </div>
+      <div class="dim-card" onclick="toggleDim(this)">
+        <div class="dim-icon">🔄</div>
+        <div class="dim-title">Change Management</div>
+        <div class="dim-risk">Technology is rarely why AI fails. People resistance, unclear adoption plans, and inadequate training are. This is typically the lowest-scoring dimension for large enterprises—and the highest-risk.</div>
+        <div class="dim-toggle">↓ See the risk</div>
+      </div>
+      <div class="dim-card" onclick="toggleDim(this)">
+        <div class="dim-icon">🛡️</div>
+        <div class="dim-title">Governance &amp; Risk</div>
+        <div class="dim-risk">Boards and regulators are asking harder AI questions than most teams can answer. Gaps in governance don't pause AI—they surface at the worst possible moment: a breach, a bias incident, an audit.</div>
+        <div class="dim-toggle">↓ See the risk</div>
+      </div>
+      <div class="dim-card" onclick="toggleDim(this)">
+        <div class="dim-icon">🔧</div>
+        <div class="dim-title">Technology Stack</div>
+        <div class="dim-risk">Legacy systems, integration debt, and vendor lock-in can quietly cap how much AI you can actually deploy—regardless of budget. Knowing your constraints upfront saves months of backtracking.</div>
+        <div class="dim-toggle">↓ See the risk</div>
+      </div>
+      <div class="dim-card" onclick="toggleDim(this)">
+        <div class="dim-icon">🌱</div>
+        <div class="dim-title">Culture &amp; Leadership</div>
+        <div class="dim-risk">AI transformation is a leadership challenge disguised as a technology challenge. This dimension scores executive sponsorship quality, psychological safety, and experimentation culture—the real enablers.</div>
+        <div class="dim-toggle">↓ See the risk</div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
+
+<hr class="rule">
+
+<!-- WHAT YOU GET -->
+<section class="section" style="background: var(--bg);">
+  <div class="section-inner">
+    <p class="section-eyebrow">What's Included</p>
+    <h2>Everything you need to assess, present, and act.</h2>
+    <p class="section-lead">Seven practitioner-grade tools—designed to surface real gaps and move budget conversations forward.</p>
+    <div class="deliverables">
+      <div class="deliverable">
+        <div class="del-icon">📋</div>
+        <div class="del-title">Diagnostic Workbook</div>
+        <div class="del-desc">40+ assessment questions designed to surface what leaders won't say in meetings. Score your organization on every dimension with guided criteria.</div>
+      </div>
+      <div class="deliverable">
+        <div class="del-icon">📊</div>
+        <div class="del-title">Executive Scorecard</div>
+        <div class="del-desc">One-page visual showing all 8 dimension scores, overall readiness grade, and your critical path to improvement. Board-ready format.</div>
+      </div>
+      <div class="deliverable">
+        <div class="del-icon">🗺️</div>
+        <div class="del-title">90-Day Quick Wins Roadmap</div>
+        <div class="del-desc">3–5 high-impact moves you can start this quarter—chosen to build momentum and make your next budget conversation easier.</div>
+      </div>
+      <div class="deliverable">
+        <div class="del-icon">🎨</div>
+        <div class="del-title">Leadership Presentation Deck</div>
+        <div class="del-desc">Present your findings to executives without sounding like you're admitting failure. Pre-built narrative that turns a gap analysis into a strategic plan.</div>
+      </div>
+      <div class="deliverable">
+        <div class="del-icon">📈</div>
+        <div class="del-title">Industry Benchmark Data</div>
+        <div class="del-desc">See how your scores compare to 100+ enterprises. Contextualize gaps as industry-common or enterprise-specific—critical for board conversations.</div>
+      </div>
+      <div class="deliverable">
+        <div class="del-icon">💡</div>
+        <div class="del-title">Stakeholder Interview Guide</div>
+        <div class="del-desc">Structured questions for CTO, CHRO, CDO, and line-of-business leaders. Dig deeper where the workbook surfaces a flag.</div>
+      </div>
+      <div class="deliverable">
+        <div class="del-icon">📄</div>
+        <div class="del-title">Full Methodology Guide</div>
+        <div class="del-desc">The complete rationale behind every dimension and scoring criterion. Transparency matters—especially when presenting to skeptical stakeholders.</div>
+      </div>
+    </div>
+    <p style="font-size: 0.82rem; color: var(--muted);">✓ Includes free updates as AI capabilities and enterprise standards evolve. Yours forever.</p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- VALUE COMPARE -->
+<section class="section">
+  <div class="section-inner">
+    <p class="section-eyebrow">Why $97</p>
+    <h2>The same diagnostic lens. A fraction of the cost.</h2>
+    <p class="section-lead">This scorecard synthesizes the same frameworks top consultancies use—without the six-figure engagement fee or the six-month timeline.</p>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Consulting Engagement</th>
+          <th class="col-ours">This Scorecard</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cost</td>
+          <td>$15,000–$50,000+</td>
+          <td class="col-ours top">$97</td>
+        </tr>
+        <tr>
+          <td>Time to insight</td>
+          <td>8–16 weeks</td>
+          <td class="col-ours">5 minutes</td>
+        </tr>
+        <tr>
+          <td>Methodology depth</td>
+          <td><span class="check">✓</span> McKinsey / BCG / Deloitte</td>
+          <td class="col-ours"><span class="check">✓</span> Same frameworks, synthesized</td>
+        </tr>
+        <tr>
+          <td>Honest about your gaps</td>
+          <td>Sometimes (they want the next engagement)</td>
+          <td class="col-ours"><span class="check">✓</span> Always</td>
+        </tr>
+        <tr>
+          <td>Executive presentation ready</td>
+          <td><span class="check">✓</span></td>
+          <td class="col-ours"><span class="check">✓</span> Deck included</td>
+        </tr>
+        <tr>
+          <td>You own it</td>
+          <td><span class="cross">✗</span> They own the IP</td>
+          <td class="col-ours"><span class="check">✓</span> Forever, with updates</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr class="rule">
 
 <!-- WHO IT'S FOR -->
-<hr class="divider"/>
-<div class="section">
-  <p class="section-eyebrow">Who it's for</p>
-  <h2 class="section-title">Built for the people making the decisions</h2>
-  <div class="persona-grid">
-    <div class="persona">
-      <p class="persona-role">Chief Digital / AI Officers</p>
-      <p class="persona-desc">Build a defensible AI investment case with scored evidence, not gut feel.</p>
-    </div>
-    <div class="persona">
-      <p class="persona-role">VP / Director of Technology</p>
-      <p class="persona-desc">Identify infrastructure gaps before a failed AI pilot exposes them the hard way.</p>
-    </div>
-    <div class="persona">
-      <p class="persona-role">Digital Transformation Leads</p>
-      <p class="persona-desc">Structure your readiness conversation across every business unit consistently.</p>
-    </div>
-    <div class="persona">
-      <p class="persona-role">Strategy &amp; Management Consultants</p>
-      <p class="persona-desc">Run a credible AI readiness workshop with clients in under half a day.</p>
+<section class="section" style="background: var(--bg);">
+  <div class="section-inner">
+    <p class="section-eyebrow">Who It's For</p>
+    <h2>Built for the people who have to make AI work.</h2>
+    <p class="section-lead">Not for AI researchers. For the transformation leaders who have to drive AI adoption inside a real enterprise—with real politics, real budgets, and real accountability.</p>
+    <div class="personas">
+      <div class="persona">
+        <div class="persona-role">CTO / VP Technology</div>
+        <div class="persona-pain">Under pressure to show an AI roadmap, but not sure if the infrastructure or operating model can actually support it.</div>
+        <div class="persona-outcome">→ Get an honest infrastructure score and a defensible prioritization framework before you commit.</div>
+      </div>
+      <div class="persona">
+        <div class="persona-role">Chief Digital Officer</div>
+        <div class="persona-pain">Driving digital transformation but struggling to align the business on AI investment priorities and sequencing.</div>
+        <div class="persona-outcome">→ Use benchmark data and the executive scorecard to align leadership in a single meeting.</div>
+      </div>
+      <div class="persona">
+        <div class="persona-role">Head of Transformation</div>
+        <div class="persona-pain">Launching an AI program without a shared understanding of organizational readiness across functions.</div>
+        <div class="persona-outcome">→ Run the assessment across teams, surface the real blockers, and build a roadmap that sticks.</div>
+      </div>
+      <div class="persona">
+        <div class="persona-role">Strategy / Operations Lead</div>
+        <div class="persona-pain">Building the business case for AI investment but lacking a credible framework to justify scope and sequencing.</div>
+        <div class="persona-outcome">→ Turn the scorecard output directly into a board-ready business case.</div>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- WHAT'S INSIDE (checklist) -->
-<hr class="divider"/>
-<div class="section">
-  <p class="section-eyebrow">Delivery details</p>
-  <h2 class="section-title">Immediately usable after download</h2>
-  <ul class="check-list">
-    <li>Scored Excel workbook with auto-calculated radar chart</li>
-    <li>Printable PDF assessment worksheet (A4 + Letter)</li>
-    <li>Executive summary slide deck template (PowerPoint)</li>
-    <li>Stakeholder interview question bank (Word / PDF)</li>
-    <li>Dimension benchmark data (industry averages by sector)</li>
-    <li>90-day quick-win action plan template</li>
-    <li>Scoring methodology explainer (2-page PDF)</li>
-    <li>Free updates as the AI landscape evolves</li>
-  </ul>
-</div>
-
-<!-- CTA BOX -->
-<div style="padding:0 24px;max-width:1040px;margin:0 auto">
-  <div class="cta-box">
-    <h2>Start your AI readiness assessment today</h2>
-    <p>Stop guessing. Know your score, own the conversation, and move forward with confidence.</p>
-    <div class="cta-price">$97 <small>one-time</small></div>
-    <p class="cta-once">Instant delivery · PDF + Excel + PowerPoint · Free updates</p>
-    <a href="https://nextgengroup1.gumroad.com/l/ai-modernization-scorecard-enterprise" class="btn-primary" style="font-size:17px;padding:18px 48px;box-shadow:0 6px 32px rgba(59,130,246,.5)">
-      ⬇ Download Now
-    </a>
-    <p style="color:#475569;font-size:12px;margin-top:20px;display:flex;align-items:center;justify-content:center;gap:6px">
-      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-      Secure checkout by Gumroad · Buyer protection included
-    </p>
-  </div>
-</div>
+<hr class="rule">
 
 <!-- FAQ -->
-<hr class="divider" style="margin-top:64px"/>
-<div class="section">
-  <p class="section-eyebrow">FAQ</p>
-  <h2 class="section-title">Common questions</h2>
-  <div class="faq">
-    <details>
-      <summary>What file formats are included?</summary>
-      <p class="faq-body">You receive a scored Excel workbook (.xlsx), a PDF assessment worksheet, a PowerPoint executive summary template, and a Word-format interview guide. Everything works in Microsoft Office and Google Workspace.</p>
-    </details>
-    <details>
-      <summary>How long does it take to run the assessment?</summary>
-      <p class="faq-body">A solo assessment using the worksheet takes 2–3 hours. A full stakeholder workshop using the interview guide typically runs a half-day. The Excel model scores in real time as you enter inputs.</p>
-    </details>
-    <details>
-      <summary>Is this suitable for a specific industry?</summary>
-      <p class="faq-body">Yes. The scorecard includes benchmark data segmented by industry (financial services, healthcare, manufacturing, retail, and tech). Weights can be adjusted in the Excel model to reflect your sector's regulatory environment.</p>
-    </details>
-    <details>
-      <summary>Can I use this with multiple clients or business units?</summary>
-      <p class="faq-body">The single license covers one organization. For agency or consulting use across multiple client engagements, please use the multi-seat option on the product page.</p>
-    </details>
-    <details>
-      <summary>How do I access the files after purchase?</summary>
-      <p class="faq-body">Gumroad emails you a secure download link immediately after payment. You can also re-download anytime from your Gumroad library. No account required to purchase.</p>
-    </details>
+<section class="section">
+  <div class="section-inner">
+    <p class="section-eyebrow">Common Questions</p>
+    <h2>What people ask before buying.</h2>
+    <div class="faq-list" style="margin-top: 32px;">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What if our score comes back terrible? <span class="faq-chevron">▾</span></button>
+        <div class="faq-a">That's the point. Most enterprises score lower than expected on change management and governance—and higher than expected on data infrastructure. A low score isn't a failure report. It's a map of exactly where to focus, before those gaps cost millions to fix mid-program.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How is this different from McKinsey or Deloitte doing an assessment? <span class="faq-chevron">▾</span></button>
+        <div class="faq-a">It synthesizes the same methodology—built by someone who's led the same type of engagements. The difference: you run it yourself in 30 minutes for $97, you own all the output, and you don't end up with a consultant recommending their next $200K engagement as the solution.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Will this help me get budget approved for an AI initiative? <span class="faq-chevron">▾</span></button>
+        <div class="faq-a">That's one of the primary design goals. The executive scorecard, benchmark data, and leadership presentation deck are all built to translate your assessment into a compelling, credible business case. Boards respond to structured gap analysis backed by industry benchmarks.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What industries does this cover? <span class="faq-chevron">▾</span></button>
+        <div class="faq-a">The 8-dimension framework applies across industries—financial services, healthcare, manufacturing, retail, and public sector. The benchmark data includes comparisons across sectors so you can contextualize your score in your specific market.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How long does it take to complete? <span class="faq-chevron">▾</span></button>
+        <div class="faq-a">The self-assessment takes 5–10 minutes to complete solo. If you use the stakeholder interview guide to validate scores with your team, plan for 30–60 minutes of total time. Either way, you'll have a full scored output before your next meeting.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What format are the files? <span class="faq-chevron">▾</span></button>
+        <div class="faq-a">You'll receive an Excel workbook (the diagnostic and scoring engine), a PDF assessment guide, a PowerPoint presentation deck, a PDF executive scorecard, and supplementary PDFs for the roadmap, benchmark data, and interview guide. Everything is editable and brandable.</div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- FOOTER -->
+<!-- CTA -->
+<section class="cta-section" id="get">
+  <h2>Stop guessing.<br>Know your score.</h2>
+  <p>A 5-minute diagnostic that changes how you think about your AI roadmap—and how you sell it to leadership.</p>
+  <div class="price-display">
+    <span class="price-amount">$97</span>
+    <span class="price-vs">vs. $15K+ consultant</span>
+  </div>
+  <br>
+  <a href="#" class="btn-primary" style="font-size: 1.05rem; padding: 18px 40px;">Get the Scorecard Now</a>
+  <p class="cta-sub">Instant download · All 7 files · Free updates forever · 30-day money-back guarantee</p>
+</section>
+
 <footer>
-  <p>AI Modernization Readiness Scorecard — Enterprise Edition &nbsp;·&nbsp; Sold securely via Gumroad</p>
+  <p>© 2025 NextGen Group. Enterprise AI Readiness Scorecard.</p>
 </footer>
 
+<script>
+  function toggleDim(el) {
+    const wasOpen = el.classList.contains('open');
+    document.querySelectorAll('.dim-card').forEach(c => {
+      c.classList.remove('open');
+      c.querySelector('.dim-toggle').textContent = '↓ See the risk';
+    });
+    if (!wasOpen) {
+      el.classList.add('open');
+      el.querySelector('.dim-toggle').textContent = '↑ Close';
+    }
+  }
+
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+</script>
 </body>
 </html>
